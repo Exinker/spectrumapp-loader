@@ -6,5 +6,6 @@ if __name__ == '__main__':
 
     dump = BinaryLoader().load(filepath)
 
+    print(dump.filename)
     print(dump.line)
     print(dump.active)
