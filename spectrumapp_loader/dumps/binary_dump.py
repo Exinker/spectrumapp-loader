@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-from spectrumapp_loader.types import ActiveFrame, ConcentrationFrame, Frame, IndexFrame, LineFrame
+from spectrumapp_loader.types import ActiveFrame, ConcentrationFrame, Frame, IndexFrame, IntensityFrame, LineFrame
 from spectrumapp_loader.utils import hex2int
 
 from .dump import AbstractDump
@@ -178,7 +178,7 @@ class BinaryDumpParser(dict):
 
         return frame
 
-    def _parse_intensity(self) -> Frame:
+    def _parse_intensity(self) -> IntensityFrame:
         '''Parse intensity dataframe.
 
         Returns
