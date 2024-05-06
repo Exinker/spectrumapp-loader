@@ -3,7 +3,7 @@ import os
 import numpy as np
 import pandas as pd
 
-from spectrumapp_loader.types import ActiveFrame, ConcentrationFrame, IndexFrame, IntensityFrame, LineFrame
+from spectrumapp_loader.types import ActiveFrame, ConcentrationFrame, FilePath, IndexFrame, IntensityFrame, LineFrame
 from spectrumapp_loader.utils import hex2int
 
 from .parser import AbstractParser
@@ -14,8 +14,11 @@ class BinaryParser(AbstractParser):
     def __init__(self, data: dict, verbose: bool = False):
         super().__init__(data=data, verbose=verbose)
 
+    def _parse_filepath(self) -> FilePath:
+        return self.data['Filename']
+
     def _parse_filename(self) -> str:
-        _, head = os.path.split(self.data['Filename'])
+        _, head = os.path.split(self['filepath'])
         name, extention = os.path.splitext(head)
 
         return name

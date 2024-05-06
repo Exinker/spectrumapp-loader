@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from spectrumapp_loader.types import ActiveFrame, ConcentrationFrame, IndexFrame, IntensityFrame, LineFrame
+from spectrumapp_loader.types import ActiveFrame, ConcentrationFrame, FilePath, IndexFrame, IntensityFrame, LineFrame
 
 
 class AbstractParser(ABC, dict):
@@ -17,6 +17,12 @@ class AbstractParser(ABC, dict):
             return self[key]
 
         raise AttributeError(f'Attribute {repr(key)} is not found!')
+
+    @abstractmethod
+    def _parse_filepath(self) -> FilePath:
+        """Parse dump's filepath."""
+
+        raise NotImplementedError
 
     @abstractmethod
     def _parse_filename(self) -> str:
